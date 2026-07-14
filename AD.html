@@ -1,0 +1,1684 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>🌸 Sakura Journal</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+
+/* =========================
+   SAKURA PETALS
+========================= */
+
+.petal{
+position:fixed;
+top:-50px;
+font-size:18px;
+pointer-events:none;
+animation:fall linear forwards;
+opacity:.8;
+z-index:1;
+}
+
+@keyframes fall{
+
+0%{
+
+transform:
+translateY(-80px)
+translateX(0)
+rotate(0deg);
+
+opacity:0;
+
+}
+
+10%{
+
+opacity:1;
+
+}
+
+100%{
+
+transform:
+translateY(110vh)
+translateX(120px)
+rotate(360deg);
+
+opacity:0;
+
+}
+
+}
+
+/* =========================
+LESSON CARD EFFECT
+========================= */
+
+.lesson-card.active{
+
+background:
+
+linear-gradient(
+135deg,
+#FFD2F4,
+#C9B9FF);
+
+color:#451045;
+
+transform:
+translateY(-8px)
+scale(1.05);
+
+}
+
+/* =========================
+QUIZ
+========================= */
+
+.quizBox{
+
+display:none;
+
+margin-top:35px;
+
+padding:30px;
+
+border-radius:30px;
+
+background:rgba(255,255,255,.12);
+
+backdrop-filter:blur(20px);
+
+}
+
+.quizAnswer{
+
+margin-top:18px;
+
+display:grid;
+
+gap:12px;
+
+}
+
+.quizAnswer button{
+
+padding:16px;
+
+border:none;
+
+border-radius:16px;
+
+cursor:pointer;
+
+font-size:16px;
+
+transition:.3s;
+
+}
+
+.quizAnswer button:hover{
+
+transform:translateY(-3px);
+
+}
+
+.correct{
+
+background:#B9FFD0!important;
+
+color:#14592D;
+
+}
+
+.wrong{
+
+background:#FFD2D2!important;
+
+color:#7B1E1E;
+
+}
+:root{
+
+--primary:#4D3EA3;
+--dark:#450C3F;
+--accent:#758AD1;
+--bg:#E2DBFB;
+--pink:#FFD2F4;
+--white:#FFF9FD;
+--soft:#F6EEFF;
+--purple:#C9B9FF;
+
+}
+
+*{
+
+margin:0;
+padding:0;
+box-sizing:border-box;
+
+}
+
+html{
+
+scroll-behavior:smooth;
+
+}
+
+body{
+
+font-family:"Be Vietnam Pro",sans-serif;
+
+background:
+linear-gradient(
+135deg,
+#450C3F,
+#4D3EA3,
+#758AD1,
+#E2DBFB);
+
+background-size:300% 300%;
+
+animation:bgMove 18s ease infinite;
+
+min-height:100vh;
+
+color:white;
+
+overflow-x:hidden;
+
+position:relative;
+
+}
+
+@keyframes bgMove{
+
+0%{
+background-position:0% 50%;
+}
+
+50%{
+background-position:100% 50%;
+}
+
+100%{
+background-position:0% 50%;
+}
+
+}
+
+body::before{
+
+content:"";
+
+position:fixed;
+
+width:550px;
+height:550px;
+
+background:#FFD2F4;
+
+filter:blur(180px);
+
+opacity:.22;
+
+left:-200px;
+top:-180px;
+
+pointer-events:none;
+
+}
+
+body::after{
+
+content:"";
+
+position:fixed;
+
+width:500px;
+height:500px;
+
+background:#758AD1;
+
+filter:blur(170px);
+
+opacity:.25;
+
+right:-180px;
+bottom:-180px;
+
+pointer-events:none;
+
+}
+
+#petals{
+
+position:fixed;
+
+inset:0;
+
+overflow:hidden;
+
+pointer-events:none;
+
+z-index:0;
+
+}
+
+.container{
+
+width:min(1250px,92%);
+
+margin:auto;
+
+position:relative;
+
+z-index:2;
+
+}
+
+header{
+
+margin-top:25px;
+
+padding:20px 35px;
+
+border-radius:28px;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+background:rgba(255,255,255,.10);
+
+backdrop-filter:blur(20px);
+
+border:1px solid rgba(255,255,255,.15);
+
+box-shadow:
+
+0 20px 40px rgba(0,0,0,.15);
+
+}
+
+.logo{
+
+display:flex;
+
+align-items:center;
+
+gap:15px;
+
+}
+
+.logo-circle{
+
+width:62px;
+height:62px;
+
+border-radius:50%;
+
+background:
+linear-gradient(
+135deg,
+#FFD2F4,
+#C9B9FF);
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+font-size:30px;
+
+}
+
+.logo h1{
+
+font-family:"Playfair Display";
+
+font-size:30px;
+
+}
+
+.logo p{
+
+font-size:13px;
+
+opacity:.8;
+
+margin-top:4px;
+
+}
+
+nav{
+
+display:flex;
+
+gap:18px;
+
+}
+
+nav button{
+
+background:rgba(255,255,255,.12);
+
+border:none;
+
+padding:12px 22px;
+
+border-radius:999px;
+
+color:white;
+
+cursor:pointer;
+
+transition:.35s;
+
+font-weight:600;
+
+}
+
+nav button:hover{
+
+background:white;
+
+color:var(--dark);
+
+transform:translateY(-2px);
+
+}
+
+.hero{
+
+display:grid;
+
+grid-template-columns:1.2fr .8fr;
+
+gap:35px;
+
+margin-top:45px;
+
+align-items:center;
+
+}
+
+.glass{
+
+background:rgba(255,255,255,.11);
+
+border:1px solid rgba(255,255,255,.15);
+
+backdrop-filter:blur(18px);
+
+border-radius:35px;
+
+box-shadow:
+
+0 30px 60px rgba(0,0,0,.18);
+
+}
+
+.hero-left{
+
+padding:45px;
+
+}
+
+.badge{
+
+display:inline-flex;
+
+align-items:center;
+
+gap:10px;
+
+padding:10px 18px;
+
+border-radius:999px;
+
+background:rgba(255,255,255,.14);
+
+font-size:14px;
+
+margin-bottom:22px;
+
+}
+
+.hero h2{
+
+font-family:"Playfair Display";
+
+font-size:62px;
+
+line-height:1.05;
+
+margin-bottom:22px;
+
+}
+
+.hero p{
+
+line-height:1.9;
+
+opacity:.92;
+
+font-size:18px;
+
+max-width:650px;
+
+}
+
+.actions{
+
+margin-top:35px;
+
+display:flex;
+
+gap:18px;
+
+flex-wrap:wrap;
+
+}
+
+.btn{
+
+padding:16px 30px;
+
+border:none;
+
+border-radius:20px;
+
+font-size:16px;
+
+font-weight:700;
+
+cursor:pointer;
+
+transition:.35s;
+
+}
+
+.btn-primary{
+
+background:
+linear-gradient(
+135deg,
+#FFD2F4,
+#C9B9FF);
+
+color:var(--dark);
+
+}
+
+.btn-secondary{
+
+background:rgba(255,255,255,.12);
+
+color:white;
+
+}
+
+.btn:hover{
+
+transform:translateY(-5px);
+
+}
+
+.hero-right{
+
+padding:35px;
+
+display:flex;
+
+flex-direction:column;
+
+gap:20px;
+
+}
+
+.profile{
+
+display:flex;
+
+align-items:center;
+
+gap:18px;
+
+}
+
+.avatar{
+
+width:90px;
+height:90px;
+
+border-radius:50%;
+
+background:
+linear-gradient(
+135deg,
+#FFD2F4,
+#FFF9FD);
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+font-size:45px;
+
+}
+
+.profile h3{
+
+font-size:28px;
+
+}
+
+.profile span{
+
+opacity:.75;
+
+}
+
+.progress-card{
+
+margin-top:10px;
+
+background:rgba(255,255,255,.09);
+
+padding:22px;
+
+border-radius:25px;
+
+}
+
+.progress-header{
+
+display:flex;
+
+justify-content:space-between;
+
+margin-bottom:12px;
+
+}
+
+.progress-bar{
+
+height:16px;
+
+background:rgba(255,255,255,.14);
+
+border-radius:99px;
+
+overflow:hidden;
+
+}
+
+.progress-fill{
+
+height:100%;
+
+width:0%;
+
+background:
+linear-gradient(
+90deg,
+#FFD2F4,
+#C9B9FF);
+
+transition:.4s;
+
+}
+
+.stats{
+
+margin-top:22px;
+
+display:grid;
+
+grid-template-columns:repeat(3,1fr);
+
+gap:15px;
+
+}
+
+.stat{
+
+padding:18px;
+
+border-radius:22px;
+
+background:rgba(255,255,255,.10);
+
+text-align:center;
+
+}
+
+.stat h4{
+
+font-size:32px;
+
+margin-bottom:8px;
+
+}
+
+.section{
+
+margin-top:70px;
+
+}
+
+.section-title{
+
+font-family:"Playfair Display";
+
+font-size:44px;
+
+margin-bottom:12px;
+
+}
+
+.section-sub{
+
+opacity:.8;
+
+margin-bottom:35px;
+
+}
+
+.lesson-grid{
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fit,minmax(130px,1fr));
+
+gap:22px;
+
+}
+
+.lesson-card{
+
+background:rgba(255,255,255,.11);
+
+border:1px solid rgba(255,255,255,.15);
+
+backdrop-filter:blur(18px);
+
+border-radius:28px;
+
+padding:28px;
+
+cursor:pointer;
+
+transition:.35s;
+
+text-align:center;
+
+}
+
+.lesson-card:hover{
+
+transform:
+translateY(-8px)
+scale(1.03);
+
+}
+
+.jp{
+
+font-family:"Noto Sans JP";
+
+font-size:62px;
+
+margin-bottom:12px;
+
+}
+
+.romaji{
+
+font-weight:700;
+
+font-size:18px;
+
+}
+
+.detail{
+
+margin-top:35px;
+
+display:none;
+
+padding:35px;
+
+}
+
+.detail h3{
+
+font-family:"Noto Sans JP";
+
+font-size:80px;
+
+margin-bottom:12px;
+
+}
+
+.detail p{
+
+margin-top:12px;
+
+line-height:1.8;
+
+}
+
+.detail-buttons{
+
+margin-top:28px;
+
+display:flex;
+
+gap:15px;
+
+flex-wrap:wrap;
+
+}
+
+.detail-buttons button{
+
+padding:15px 24px;
+
+border:none;
+
+border-radius:18px;
+
+cursor:pointer;
+
+font-weight:700;
+
+}
+
+.audio{
+
+background:#FFD2F4;
+
+color:#450C3F;
+
+}
+
+.learn{
+
+background:#C9B9FF;
+
+color:#2E195E;
+
+}
+
+.quiz{
+
+background:white;
+
+color:#4D3EA3;
+
+}
+
+@media(max-width:980px){
+
+.hero{
+
+grid-template-columns:1fr;
+
+}
+
+.hero h2{
+
+font-size:46px;
+
+}
+
+nav{
+
+display:none;
+
+}
+
+.stats{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
+/* =========================
+STROKE BOX
+========================= */
+
+.stroke-box{
+
+margin-top:25px;
+
+padding:20px;
+
+border-radius:20px;
+
+background:rgba(255,255,255,.08);
+
+text-align:center;
+
+}
+
+.stroke-char{
+
+font-family:"Noto Sans JP";
+
+font-size:100px;
+
+opacity:.15;
+
+position:relative;
+
+}
+
+.stroke-animate{
+
+font-size:100px;
+
+animation:strokePop .8s ease;
+
+}
+
+@keyframes strokePop{
+
+0%{
+
+transform:scale(.3);
+
+opacity:0;
+
+}
+
+70%{
+
+transform:scale(1.15);
+
+}
+
+100%{
+
+transform:scale(1);
+
+opacity:1;
+
+}
+
+}
+
+/* =========================
+QUOTE
+========================= */
+
+.quote{
+
+margin-top:25px;
+
+padding:20px;
+
+border-radius:18px;
+
+background:rgba(255,255,255,.08);
+
+font-style:italic;
+
+line-height:1.8;
+
+}
+
+/* =========================
+DARK MODE
+========================= */
+
+.dark{
+
+background:
+
+linear-gradient(
+135deg,
+#160C2E,
+#241640,
+#31235E);
+
+color:white;
+
+}
+
+.dark .glass{
+
+background:rgba(255,255,255,.05);
+
+}
+
+.dark .lesson-card{
+
+background:rgba(255,255,255,.05);
+
+}
+
+.dark .progress-card{
+
+background:rgba(255,255,255,.05);
+
+}
+</style>
+
+</head>
+
+<body>
+
+<div id="petals"></div>
+
+<div class="container">
+
+<header>
+
+<div class="logo">
+
+<div class="logo-circle">
+🌸
+</div>
+
+<div>
+
+<h1>Sakura Journal</h1>
+
+<p>Learn Japanese beautifully.</p>
+
+</div>
+
+</div>
+
+<nav>
+
+<button>🏠 Home</button>
+
+<button>📖 Lessons</button>
+
+<button>📝 Quiz</button>
+
+<button>⭐ Progress</button>
+<button onclick="toggleDark()">
+
+🌙 Dark
+
+</button>
+
+</nav>
+
+</header>
+
+<section class="hero">
+
+<div class="hero-left glass">
+
+<div class="badge">
+🌸 おはよう • Chào buổi sáng
+</div>
+
+<h2>
+Học tiếng Nhật<br>
+như đọc một cuốn<br>
+nhật ký mùa xuân.
+</h2>
+
+<p>
+
+Không áp lực.
+
+Không quảng cáo.
+
+Không mất động lực.
+
+Mỗi ngày chỉ cần học một chút,
+Sakura Journal sẽ giúp bạn nhớ lâu bằng hình ảnh,
+liên tưởng và văn hoá Nhật Bản.
+
+</p>
+
+<div class="actions">
+
+<button class="btn btn-primary">
+
+🌸 Bắt đầu học
+
+</button>
+
+<button class="btn btn-secondary">
+
+📚 Hiragana
+
+</button>
+
+</div>
+
+</div>
+
+<div class="hero-right glass">
+
+<div class="profile">
+
+<div class="avatar">
+
+🐱
+
+</div>
+
+<div>
+
+<h3>Momo</h3>
+
+<span>Your Study Buddy</span>
+
+</div>
+
+</div>
+
+<div class="progress-card">
+
+<div class="progress-header">
+
+<b>Today's Progress</b>
+
+<span id="progressText">
+0%
+</span>
+
+</div>
+
+<div class="progress-bar">
+
+<div
+class="progress-fill"
+id="progressFill">
+
+</div>
+
+</div>
+
+<div class="stats">
+
+<div class="stat">
+
+<h4 id="xp">
+0
+</h4>
+
+XP
+
+</div>
+
+<div class="stat">
+
+<h4 id="level">
+1
+</h4>
+
+Level
+
+</div>
+
+<div class="stat">
+
+<h4 id="streak">
+0
+</h4>
+
+Streak
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<section class="section">
+
+<h2 class="section-title">
+
+🌸 Hiragana
+
+</h2>
+
+<p class="section-sub">
+
+Bắt đầu với 5 chữ đầu tiên.
+
+</p>
+
+<div class="lesson-grid" id="lessonGrid">
+
+<div class="lesson-card" data-char="あ">
+<div class="jp">あ</div>
+<div class="romaji">a</div>
+</div>
+
+<div class="lesson-card" data-char="い">
+<div class="jp">い</div>
+<div class="romaji">i</div>
+</div>
+
+<div class="lesson-card" data-char="う">
+<div class="jp">う</div>
+<div class="romaji">u</div>
+</div>
+
+<div class="lesson-card" data-char="え">
+<div class="jp">え</div>
+<div class="romaji">e</div>
+</div>
+
+<div class="lesson-card" data-char="お">
+<div class="jp">お</div>
+<div class="romaji">o</div>
+</div>
+</div>
+
+<div class="detail glass" id="detail">
+<div class="quizBox" id="quizBox">
+
+<h2>🌸 Mini Quiz</h2>
+
+<br>
+
+<h3 id="quizQuestion">
+
+</h3>
+
+<div
+class="quizAnswer"
+id="quizAnswer">
+
+</div>
+
+</div>
+
+<h3 id="jpChar">あ</h3>
+
+<p id="romaji">
+Romaji : a
+</p>
+
+<p id="mnemonic">
+💡
+Giống người đang há miệng kêu "A".
+</p>
+
+<p id="example">
+📖
+あさ（asa）
+→ Buổi sáng
+</p>
+
+<div class="detail-buttons">
+
+<button
+class="audio"
+onclick="playAudio()">
+
+🔊 Phát âm
+
+</button>
+
+<button
+class="learn"
+onclick="learnCurrent()">
+
+🌸 Đã học
+
+</button>
+
+<button
+class="quiz"
+onclick="startQuiz()">
+
+📝 Quiz
+
+</button>
+
+</div>
+</div>
+
+</section>
+<footer
+style="margin:80px 0 30px;text-align:center;opacity:.75">
+
+Made with 🌸 for learning Japanese.
+
+</footer>
+<script>
+
+const LESSONS={
+
+"あ":{
+
+romaji:"a",
+
+mnemonic:"Giống người há miệng kêu A.",
+
+example:"あさ（asa）→ Buổi sáng"
+
+},
+
+"い":{
+
+romaji:"i",
+
+mnemonic:"Giống hai chiếc kim.",
+
+example:"いぬ（inu）→ Con chó"
+
+},
+
+"う":{
+
+romaji:"u",
+
+mnemonic:"Giống cái móc câu.",
+
+example:"うみ（umi）→ Biển"
+
+},
+
+"え":{
+
+romaji:"e",
+
+mnemonic:"Giống người cúi đầu.",
+
+example:"えき（eki）→ Nhà ga"
+
+},
+
+"お":{
+
+romaji:"o",
+
+mnemonic:"Giống người ôm vật.",
+
+example:"おちゃ（ocha）→ Trà"
+
+}
+
+};
+
+let current="あ";
+
+let xp=Number(localStorage.getItem("xp"))||0;
+
+let level=Number(localStorage.getItem("level"))||1;
+
+let streak=Number(localStorage.getItem("streak"))||0;
+
+let learned=
+JSON.parse(localStorage.getItem("learned")||"[]");
+
+updateStats();
+
+document
+.querySelectorAll(".lesson-card")
+.forEach(card=>{
+
+card.onclick=()=>{
+
+current=card.dataset.char;
+document
+
+.querySelectorAll(".lesson-card")
+
+.forEach(c=>c.classList.remove("active"));
+
+card.classList.add("active");
+
+let d=LESSONS[current];
+
+document.getElementById("detail").style.display="block";
+
+document.getElementById("jpChar").innerHTML=current;
+
+document.getElementById("romaji").innerHTML=
+
+"<b>Romaji:</b> "+d.romaji;
+
+document.getElementById("mnemonic").innerHTML=
+
+"💡 "+d.mnemonic;
+
+document.getElementById("example").innerHTML=
+
+
+
+"📖 "+d.example;
+
+}
+
+});
+
+function playAudio(){
+
+let u=new SpeechSynthesisUtterance(current);
+
+u.lang="ja-JP";
+
+speechSynthesis.cancel();
+
+speechSynthesis.speak(u);
+
+}
+
+function learnCurrent(){
+
+if(!learned.includes(current)){
+
+learned.push(current);
+
+xp+=10;
+
+level=Math.floor(xp/100)+1;
+
+localStorage.setItem("learned",JSON.stringify(learned));
+
+localStorage.setItem("xp",xp);
+
+localStorage.setItem("level",level);
+
+}
+
+updateStats();
+
+}
+
+function updateStats(){
+
+document.getElementById("xp").innerHTML=xp;
+
+document.getElementById("level").innerHTML=level;
+
+document.getElementById("streak").innerHTML=streak;
+
+let percent=(learned.length/5)*100;
+
+document.getElementById("progressFill").style.width=
+
+percent+"%";
+
+document.getElementById("progressText").innerHTML=
+
+Math.round(percent)+"%";
+
+}
+const QUOTES=[
+
+"七転び八起き - Ngã bảy lần, đứng dậy tám lần.",
+
+"継続は力なり - Kiên trì là sức mạnh.",
+
+"一歩ずつ前へ - Tiến từng bước một.",
+
+"Practice makes perfect 🌸"
+
+];
+const QUIZ=[
+
+{
+
+question:"Chữ nào đọc là 'a' ?",
+
+answer:"あ",
+
+choices:["い","お","あ","え"]
+
+},
+
+{
+
+question:"Chữ nào đọc là 'u' ?",
+
+answer:"う",
+
+choices:["あ","え","う","い"]
+
+},
+
+{
+
+question:"Chữ nào đọc là 'o' ?",
+
+answer:"お",
+
+choices:["え","お","い","あ"]
+
+}
+
+];
+
+let quizIndex=0;
+
+function startQuiz(){
+
+quizIndex=0;
+
+document
+.getElementById("quizBox")
+.style.display="block";
+
+showQuiz();
+
+}
+function showQuiz(){
+
+let q=QUIZ[quizIndex];
+
+document
+.getElementById("quizQuestion")
+.innerHTML=q.question;
+
+let html="";
+
+q.choices.forEach(choice=>{
+
+html+=`
+
+<button
+
+onclick="answerQuiz('${choice}')">
+
+${choice}
+
+</button>
+
+`;
+
+});
+
+document
+.getElementById("quizAnswer")
+.innerHTML=html;
+
+}
+
+function answerQuiz(choice){
+
+let q=QUIZ[quizIndex];
+
+let buttons=
+
+document.querySelectorAll(
+
+"#quizAnswer button"
+
+);
+
+buttons.forEach(btn=>{
+
+if(btn.innerText===q.answer){
+
+btn.classList.add("correct");
+
+}
+
+if(
+
+btn.innerText===choice
+
+&&
+
+choice!==q.answer
+
+){
+
+btn.classList.add("wrong");
+
+}
+
+btn.disabled=true;
+
+});
+
+if(choice===q.answer){
+
+xp+=10;
+
+}
+
+setTimeout(()=>{
+
+quizIndex++;
+
+if(
+
+quizIndex>=QUIZ.length
+
+){
+
+alert("🎉 Hoàn thành Quiz!");
+
+updateStats();
+
+document
+
+.getElementById("dailyQuote")
+
+.innerHTML=
+
+QUOTES[
+new Date().getDate()%QUOTES.length
+];
+document
+
+.getElementById("quizBox")
+
+.style.display="none";
+
+return;
+
+}
+
+showQuiz();
+
+},900);
+
+}
+setInterval(()=>{
+
+const p=document.createElement("div");
+
+p.className="petal";
+
+p.innerHTML=Math.random()>0.5?"🌸":"🌺";
+
+p.style.left=Math.random()*100+"vw";
+
+p.style.animationDuration=
+
+6+Math.random()*8+"s";
+
+document.body.appendChild(p);
+
+setTimeout(()=>{
+
+p.remove();
+
+},14000);
+
+},500);
+
+function toggleDark(){
+
+document.body.classList.toggle("dark");
+
+localStorage.setItem(
+
+"dark",
+
+document.body.classList.contains("dark")
+
+);
+
+}
+
+if(
+
+localStorage.getItem("dark")=="true"
+
+){
+
+document.body.classList.add("dark");
+
+}
+</script>
+</div>
+<div class="stroke-box">
+
+<h3>
+
+✏ Stroke
+
+</h3>
+
+<div
+
+id="stroke"
+
+class="stroke-char">
+
+あ
+
+</div>
+
+</div>
+
+<div
+
+class="quote"
+
+id="dailyQuote">
+
+🇯🇵 Every day is a new beginning.
+
+</div>
